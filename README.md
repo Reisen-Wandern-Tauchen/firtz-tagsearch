@@ -6,6 +6,10 @@ Es handelt sich hier um eine Erweiterung für den firtz podcast publisher.
 Diese besteht darin, dem firtz eine Schlagwort-Suche innerhalb aller Posts zu ermöglichen. Die Suchroutine übernimmt ein Schlagwort bzw. eine Suchphrase und führt damit eine Suche innerhalb der Schlüsselwörter (keywords) in jeder Episode durch.
 Es wird nicht der Artikel-Text der Episode durchsucht sondern nur die definierten Schlüsselwörter! (diese Funktion wird eventuell irgendwann ergänzt...)
 
+### Changelog
+0.1  
+ > erste funktionsfähige Version (initial release)
+
 ### Installation
 Kopiere zunächst den Ordner `/ext/tags` mit allen darin enthaltenen Dateien in Deine firtz-Installation.
 
@@ -46,6 +50,10 @@ Als Ergebnis erhältst Du eine Liste aller Episoden, welche mit dem gesuchten Sc
 This is an extension to the firtz podcast publisher.
 It will add a possibility to run a keyword-search over all posts. The search-routine takes a single keyword or a (exact) phrase and performs a search in the defined keywords of every article.
 It does not perform a search in the article-text! (this feature will maybe added some day...)
+
+### changelog
+0.1  
+ > first working version (initial release)
 
 ### install
 Copy the folder `/ext/tags` with all files to your firtz-installation.
