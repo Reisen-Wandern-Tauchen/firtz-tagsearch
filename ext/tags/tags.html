@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ substr(@feedattr.language,0,2) }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{{@feedattr.title}} - {{@dict_tagsearch}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="{{@dict_tagsearch}} - {{@feedattr.title}} - {{@feedattr.description}}"/>
+
+    <meta name="author" content="{{@feedattr.author | raw}}"/>
+    <check if="{{@feedattr.image}}">
+      <meta property="og:image" content="{{@feedattr.image}}"/>
+    </check>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{@feedattr.title}}"/>
+    <meta property="og:title" content="Tag-Search"/>
+    <meta property="og:url" content="{{@BASEURL}}{{@feedattr.slug}}/tags"/>
+    <link href="{{@feedattr.sitecss}}" rel="stylesheet">
+     <style type="text/css">
+     body{padding-top:20px;padding-bottom:40px} a>h3,.homebut,a>h3:hover,a:hover,.homebut:hover{text-decoration:none !important}  .container-narrow{ margin:0 auto; max-width:700px} .container-narrow >hr{ margin:30px 0}  .jumbotron{ margin:30px 0; text-align:center} .jumbotron h1{ font-size:72px; line-height:1} .jumbotron .btn{ font-size:21px; padding:14px 24px}  .marketing{ margin:20px 0} .marketing p+h4{ margin-top:28px} 
+    </style>
+    <link href="{{@BASEURL}}css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="{{@BASEURL}}pwp/static/podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{@feedattr.image}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{@feedattr.image}}">
+    <link rel="apple-touch-icon-precomposed" href="{{@feedattr.image}}">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script src="{{@BASEURL}}js/jquery.js"></script>
+    <repeat group="{{glob(@templatepath.'/head/*.html')}}" value="{{@template}}">
+      <include href="{{'head/'.basename(@template)}}"/>
+    </repeat>
+  </head>
+
+  <body>
+	<div class="container-narrow">
+		<hr>
+		<div class="jumbotron">
+			<h1>{{@feedattr.title}}</h1>
+			<p class="lead">{{@feedattr.description}}</p>
+		</div>
+		<hr>
+
+		<div class="jumbotron">
+			<h2>{{@dict_tagsearch}} &quot;{{@tag}}&quot;</h2>
+		</div>
+		
+		<div class="row-fluid marketing">
+			
+			<repeat group="@items" value="{{@item}}">
+				
+				<repeat group="{{(explode(',', @item.keywords))}}" value="@keyword">
+					
+					<check if="@keyword == @tag">
+						<div class="media well-large">
+							<img class="media-object pull-left" src="{{@item.image}}" width=64 height=64>
+							
+							<div class="media-body">
+								<h4 class="media-heading">{{@dict_pubdate,strtotime(@item.pubDate) | format}}: <a href="/{{@feedattr.slug}}/show/{{@item.slug}}" name="{{@item.slug}}"><span class="text-center">{{@item.title}}</span></a> </h4>
+								<div class="">
+									{{@item.description}}<br>
+									<check if="{{@item.duration}}">{{@dict_duration}}: {{@item.duration}}</check><br>
+									Tags: {{@item.keywords}}
+								</div>
+							</div>
+						</div>
+					</check>
+
+				</repeat>
+
+			</repeat>
+		</div>
+	</div>
+</body>
