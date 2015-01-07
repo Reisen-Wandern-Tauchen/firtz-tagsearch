@@ -46,6 +46,14 @@ und füge unmittelbar davor diesen Code ein:
 Verwende folgenden Aufruf um eine Suche zu starten: `http://deine.podcast.url/podcastname/tags/SCHLUESSELWORT`  
 Als Ergebnis erhältst Du eine Liste aller Episoden, welche mit dem gesuchten Schlagwort / Phrase versehen sind. Die Liste ähnelt der, die Du aus dem Podcast-Archiv kennst.
 
+Um eine Suchleiste in das Seitentemplate einzubauen füge folgende Formulardefinition an passender Stelle in Dein Template (site.html) ein:
+```
+<form id="tagsearch" action="" method="get" onSubmit="if (document.getElementById('search_input').value != '') { document.getElementById('tagsearch').action = '/{{@feedattr.slug}}/tags/' + document.getElementById('search_input').value + '/'; return true; } alert('leere Sucheingabe'); false;">
+	<input type="search" id="search_input" />
+</form>
+```
+ACHTUNG: das Suchfeld benötigt aktiviertes Javascript, da die URL-Umleitung damit realisiert wird!
+
 ## english version
 This is an extension to the firtz podcast publisher.
 It will add a possibility to run a keyword-search over all posts. The search-routine takes a single keyword or a (exact) phrase and performs a search in the defined keywords of every article.
@@ -90,3 +98,11 @@ inside your *template/site.html* and add this codeblock just right before:
 ### use
 To perform the search use: `http://your.podcast.url/podcast-name/tags/KEYWORD`  
 The result is a list of all episodes containing the keyword / phrase. This list is similar to this you know of the podcast-archive.
+
+To add a search-bar to yor site-template insert the following form-definition to your template (site.html) at the desired position:
+```
+<form id="tagsearch" action="" method="get" onSubmit="if (document.getElementById('search_input').value != '') { document.getElementById('tagsearch').action = '/{{@feedattr.slug}}/tags/' + document.getElementById('search_input').value + '/'; return true; } alert('leere Sucheingabe'); false;">
+	<input type="search" id="search_input" />
+</form>
+```
+ATTENTION: this search requires JavaScript because of the reason, that the URL-redirect is done with it!
